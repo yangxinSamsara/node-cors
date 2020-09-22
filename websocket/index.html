@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>websocket</title>
+  </head>
+
+  <body>
+    <button onclick="onOpen()">opne</button>
+    <button onclick="onClose()">close</button>
+    <script>
+      let socket = new WebSocket('ws://localhost:8888')
+      var timer = null
+      // 用于指定连接成功后的回调函数。
+        socket.onopen = function () {
+          timer = setInterval(() => {
+            socket.send('hello server')
+          }, 1000)
+      }
+
+      // 指定当从服务器接受到信息时的回调函数。
+      socket.onmessage = function (e) {
+        console.log(e.data, 'message from server')
+      }
+
+      socket.onclose = function () {
+        alert('socket close')
+        clearInterval(timer)
+      }
+      function onClose() {
+        socket.close()
+      }
+    </script>
+  </body>
+</html>

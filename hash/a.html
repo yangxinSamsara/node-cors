@@ -1,0 +1,9 @@
+<iframe src="http://localhost:9090/hash/c.html#name1"></iframe>
+<script>
+    // a中嵌入c，在c中改变a的hash，存在跨域，然后c中嵌入和a同域的b，通过在b的url #后面加上要传递的值，这个时候a是b的祖父级别
+    // 在b中通过 window.parent.parent.location.hash = location.hash（name2） 
+    window.onhashchange = function () {
+      console.log('a接收到的hash',location.hash)
+      console.log(12345)
+    }
+</script>

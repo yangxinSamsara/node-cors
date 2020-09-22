@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+
+<body>
+    <iframe src="http://localhost:8888" frameborder="0" id="iframe" onload="load()"></iframe>
+
+    <script>
+        function load() {
+            // message: 将要发送到其他 window 的数据。
+            // targetOrigin: 通过窗口的 origin 属性来指定哪些窗口能接收到消息事件.
+            // transfer(可选) : 是一串和 message 同时传递的 Transferable 对象. 这些对象的所有权将被转移给消息的接收方，而发送一方将不再保有所有权
+            iframe.contentWindow.postMessage('tom', 'http://localhost:8888')
+            window.onmessage = (e) => {
+              console.log(e.data,'8888 传过来的')
+            }
+        }
+    </script>
+</body>
+
+</html>
